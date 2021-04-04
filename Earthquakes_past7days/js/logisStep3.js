@@ -41,7 +41,11 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
                 console.log(data);
                 return L.circleMarker(latlng);
             },
-          style: styleInfo
+          style: styleInfo, 
+      //Create a popup for each circleMarker
+          onEachFeature: function(feature, layer) {
+            layer.bindPopup("Magnitude:" + feature.properties.mag + "<br>Location:" + feature.properties.place);
+          }
           }).addTo(map);
   
 });
